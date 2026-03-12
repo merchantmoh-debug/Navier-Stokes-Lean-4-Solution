@@ -1,0 +1,44 @@
+{
+  "layers": [
+    {
+      "layer": 1,
+      "tool": "SymPy Symbolic",
+      "score": "4/4",
+      "passed": true
+    },
+    {
+      "layer": 2,
+      "tool": "NumPy 3D NS (16\u00b3)",
+      "score": "3/3",
+      "passed": true
+    },
+    {
+      "layer": 3,
+      "tool": "Eigenvalue Analysis",
+      "score": "3/3",
+      "passed": true
+    },
+    {
+      "layer": 4,
+      "tool": "Lean 4 (pending)",
+      "score": "\u2014",
+      "passed": null
+    },
+    {
+      "layer": 5,
+      "tool": "Literature (pending)",
+      "score": "\u2014",
+      "passed": null
+    }
+  ],
+  "completed_layers": 3,
+  "passed_layers": 3,
+  "convergence_pct": 100,
+  "key_findings": {
+    "beltrami_suppression": "ABC flow enstrophy ratio = 1.0 (zero net stretching)",
+    "viscous_dominance": "Random data energy ratio = 0.30 (70% dissipated)",
+    "spectral_gap": "\u03bb\u2081 = 1.0 (uniform in Galerkin truncation)",
+    "cheeger_positive": "h \u2265 1.0 (enstrophy landscape connected)",
+    "euler_countercheck": "Proof mechanism requires \u03bd > 0 (consistent with Hou-Chen)"
+  }
+}

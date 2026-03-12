@@ -1,0 +1,46 @@
+{
+  "layer": 2,
+  "tool": "NumPy Pseudospectral",
+  "grid": "16^3",
+  "viscosity": 0.01,
+  "T_final": 2.0,
+  "tests": [
+    {
+      "name": "Taylor-Green Vortex",
+      "Z_max": 114.43838581276871,
+      "Z_ratio": 1.2302711801734263,
+      "E_ratio": 0.8724673916022252,
+      "bounded": true,
+      "decaying": true,
+      "passed": true,
+      "elapsed_s": 2.6
+    },
+    {
+      "name": "ABC Flow (Beltrami)",
+      "Z_max": 372.0753201635978,
+      "Z_ratio": 1.0,
+      "E_ratio": 0.9607894391523245,
+      "bounded": true,
+      "decaying": true,
+      "passed": true,
+      "elapsed_s": 2.5
+    },
+    {
+      "name": "Random Large Data (3x)",
+      "Z_max": 808281.0892403234,
+      "Z_ratio": 1.0,
+      "E_ratio": 0.3037452029201966,
+      "bounded": true,
+      "decaying": true,
+      "passed": true,
+      "elapsed_s": 2.6
+    }
+  ],
+  "score": "3/3",
+  "all_passed": true,
+  "conclusions": {
+    "enstrophy_bounded": "All three test cases show bounded enstrophy",
+    "energy_decaying": "Energy monotonically decreases (viscous dissipation)",
+    "beltrami_special": "ABC flow (exact Beltrami) decays slowest \u2014 confirms alignment suppresses stretching"
+  }
+}

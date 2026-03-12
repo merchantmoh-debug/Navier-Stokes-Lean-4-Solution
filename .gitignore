@@ -1,0 +1,14 @@
+.lake/
+lake-packages/
+build/
+*.olean
+*.ilean
+*.trace
+__pycache__/
+*.pyc
+.DS_Store
+*.aux
+*.log
+*.out
+*.toc
+*.synctex.gz
