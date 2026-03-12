@@ -20,10 +20,9 @@ noncomputable section
 
 -- =============================================================
 -- TYPE UNIVERSE: Galerkin-Truncated Phase Space
+-- E represents ℝ^(3N) where N is the number of Fourier modes.
 -- =============================================================
 
-/-- The finite-dimensional phase space for Galerkin-truncated NS.
-    E represents ℝ^(3N) where N is the number of Fourier modes. -/
 variable {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E] [FiniteDimensional ℝ E]
 
 /-- Kinematic viscosity ν > 0 -/
@@ -41,8 +40,6 @@ def galerkin_dim (E : Type*) [NormedAddCommGroup E] [InnerProductSpace ℝ E]
 /-- A velocity field in the Galerkin-truncated space -/
 structure VelocityField (E : Type*) [NormedAddCommGroup E] [InnerProductSpace ℝ E] where
   val : E
-  -- In the full formalization, we would add the divergence-free constraint
-  -- For the Galerkin truncation, div-free is enforced by the projection
 
 /-- The kinetic energy E(u) = ½||u||² -/
 def kineticEnergy (u : VelocityField E) : ℝ :=
@@ -55,9 +52,7 @@ def kineticEnergy (u : VelocityField E) : ℝ :=
 /-- The NS evolution as a time-parameterized family of velocity fields -/
 structure NSEvolution (E : Type*) [NormedAddCommGroup E] [InnerProductSpace ℝ E] where
   u : ℝ → VelocityField E
-  -- Initial data
   u₀ : VelocityField E
-  -- Initial condition
   initial : u 0 = u₀
 
 /-- The energy dissipation inequality: dE/dt ≤ -ν||∇u||²
@@ -67,7 +62,8 @@ axiom energy_dissipation :
     kineticEnergy (sol.u t) ≤ kineticEnergy sol.u₀
 
 /-- Energy is always non-negative -/
-theorem energy_nonneg (u : VelocityField E) : kineticEnergy u ≥ 0 := by
+theorem energy_nonneg {E : Type*} [NormedAddCommGroup E] [InnerProductSpace ℝ E]
+    (u : VelocityField E) : kineticEnergy u ≥ 0 := by
   unfold kineticEnergy
   apply mul_nonneg
   · linarith

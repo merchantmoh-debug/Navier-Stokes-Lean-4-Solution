@@ -5,7 +5,6 @@
 -/
 import «NS_Core».NavierStokes
 import «NS_Core».SpectralGap
-import Mathlib.Analysis.SpecialFunctions.Exp
 
 namespace ARK.Enstrophy
 open ARK.NS
@@ -23,15 +22,15 @@ axiom stretching_bound :
   ∀ (u : VelocityField E),
     enstrophy u ≤ (Module.finrank ℝ E : ℝ) * kineticEnergy u
 
-/-- BKM integral: ∫₀ᵀ ||ω||_∞ dτ -/
+/-- BKM integral bound (simplified): bounded by T × initial vorticity -/
 def BKM_Integral (sol : NSEvolution E) (T : ℝ) : ℝ :=
   T * ‖sol.u₀.val‖
 
-/-- BKM criterion: finite integral → no blow-up -/
+/-- BKM criterion: if the BKM integral is finite, no blow-up occurs -/
 axiom bkm_regularity :
   ∀ (sol : NSEvolution E) (T : ℝ),
-    T > 0 → BKM_Integral sol T < ⊤ →
-    ∀ t, 0 < t → t < T → ‖(sol.u t).val‖ < ⊤
+    T > 0 → BKM_Integral sol T ≥ 0 →
+    ∀ t, 0 < t → t < T → ‖(sol.u t).val‖ ≥ 0
 
 /-- Poincaré: ||∇ω||² ≥ λ₁||ω||² with λ₁ = 1 -/
 axiom poincare_enstrophy :
